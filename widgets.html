@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Widgets &#8212; sixtyfpsui  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="widgets">
+<h1>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h1>
+<p>Widgets are not imported by default, and need to be imported from <code class="docutils literal notranslate"><span class="pre">&quot;sixtyfps_widgets.60&quot;</span></code></p>
+<p>Their appearance can change depending on the style</p>
+<section id="button">
+<h2><code class="docutils literal notranslate"><span class="pre">Button</span></code><a class="headerlink" href="#button" title="Permalink to this headline">¶</a></h2>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">text</span></code></strong> (<em>string</em>): The text written in the button.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">icon</span></code></strong> (<em>image</em>): The image to show in the button. Note that not all styles support drawing icons.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pressed</span></code></strong>: (<em>bool</em>): Set to true when the button is pressed.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">enabled</span></code></strong>: (<em>bool</em>): Defaults to true. When false, the button cannot be pressed</p></li>
+</ul>
+</section>
+<section id="callbacks">
+<h3>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">clicked</span></code></strong></p></li>
+</ul>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { Button } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    Button {
+        width: parent.width;
+        height: parent.height;
+        text: &quot;Click Me&quot;;
+        clicked =&gt; { self.text = &quot;Clicked&quot;; }
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="standardbutton">
+<h2><code class="docutils literal notranslate"><span class="pre">StandardButton</span></code><a class="headerlink" href="#standardbutton" title="Permalink to this headline">¶</a></h2>
+<p>The StandardButton looks like a button, but instead of customizing with <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">icon</span></code>,
+it can used one of the pre-defined <code class="docutils literal notranslate"><span class="pre">kind</span></code> and the text and icon will depend on the style.</p>
+<section id="id1">
+<h3>Properties<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">kind</span></code></strong> (<em>enum</em>): The kind of button, one of
+<code class="docutils literal notranslate"><span class="pre">ok</span></code> <code class="docutils literal notranslate"><span class="pre">cancel</span></code>, <code class="docutils literal notranslate"><span class="pre">apply</span></code>, <code class="docutils literal notranslate"><span class="pre">close</span></code>, <code class="docutils literal notranslate"><span class="pre">reset</span></code>, <code class="docutils literal notranslate"><span class="pre">help</span></code>, <code class="docutils literal notranslate"><span class="pre">yes</span></code>, <code class="docutils literal notranslate"><span class="pre">no,</span></code> <code class="docutils literal notranslate"><span class="pre">abort</span></code>, <code class="docutils literal notranslate"><span class="pre">retry</span></code> or <code class="docutils literal notranslate"><span class="pre">ignore</span></code></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">enabled</span></code></strong>: (<em>bool</em>): Defaults to true. When false, the button cannot be pressed</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Callbacks<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">clicked</span></code></strong></p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { StandardButton, VerticalBox } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+  VerticalBox {
+    StandardButton { kind: ok; }
+    StandardButton { kind: apply; }
+    StandardButton { kind: cancel; }
+  }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="checkbox">
+<h2><code class="docutils literal notranslate"><span class="pre">CheckBox</span></code><a class="headerlink" href="#checkbox" title="Permalink to this headline">¶</a></h2>
+<section id="id4">
+<h3>Properties<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">text</span></code></strong> (<em>string</em>): The text written next to the checkbox.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">checked</span></code></strong>: (<em>bool</em>): Whether the checkbox is checked or not.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Callbacks<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">toggled</span></code></strong>: The checkbox value changed</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { CheckBox } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 25px;
+    CheckBox {
+        width: parent.width;
+        height: parent.height;
+        text: &quot;Hello World&quot;;
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="spinbox">
+<h2><code class="docutils literal notranslate"><span class="pre">SpinBox</span></code><a class="headerlink" href="#spinbox" title="Permalink to this headline">¶</a></h2>
+<section id="id7">
+<h3>Properties<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">value</span></code></strong> (<em>int</em>): The value.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">minimum</span></code></strong> (<em>int</em>): The minimum value (default: 0).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">maximum</span></code></strong> (<em>int</em>): The maximum value (default: 100).</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { SpinBox } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 25px;
+    SpinBox {
+        width: parent.width;
+        height: parent.height;
+        value: 42;
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="slider">
+<h2><code class="docutils literal notranslate"><span class="pre">Slider</span></code><a class="headerlink" href="#slider" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h3>Properties<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">value</span></code></strong> (<em>float</em>): The value.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">minimum</span></code></strong> (<em>float</em>): The minimum value (default: 0)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">maximum</span></code></strong> (<em>float</em>): The maximum value (default: 100)</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Callbacks<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">changed(float)</span></code></strong>: The value was changed</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>Example<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { Slider } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 25px;
+    Slider {
+        width: parent.width;
+        height: parent.height;
+        value: 42;
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="groupbox">
+<h2><code class="docutils literal notranslate"><span class="pre">GroupBox</span></code><a class="headerlink" href="#groupbox" title="Permalink to this headline">¶</a></h2>
+<section id="id12">
+<h3>Properties<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">title</span></code></strong> (<em>string</em>): A text written as the title of the group box.</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>Example<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { GroupBox } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 100px;
+    GroupBox {
+        title: &quot;A Nice Title&quot;;
+        Text {
+            text: &quot;Hello World&quot;;
+            color: blue;
+        }
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="lineedit">
+<h2><code class="docutils literal notranslate"><span class="pre">LineEdit</span></code><a class="headerlink" href="#lineedit" title="Permalink to this headline">¶</a></h2>
+<p>A widget used to enter a single line of text</p>
+<section id="id14">
+<h3>Properties<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">text</span></code></strong> (<em>string</em>): The text being edited</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">has-focus</span></code></strong>: (<em>bool</em>): Set to true when the line edit currently has the focus</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">placeholder-text</span></code></strong>: (<em>string</em>): A placeholder text being shown when there is no text in the edit field</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">enabled</span></code></strong>: (<em>bool</em>): Defaults to true. When false, nothing can be entered</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>Callbacks<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">accepted</span></code></strong>: Enter was pressed</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">edited</span></code></strong>: Emitted when the text has changed because the user modified it</p></li>
+</ul>
+</section>
+<section id="id16">
+<h3>Example<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { LineEdit } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 25px;
+    LineEdit {
+        width: parent.width;
+        height: parent.height;
+        placeholder-text: &quot;Enter text here&quot;;
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="textedit">
+<h2><code class="docutils literal notranslate"><span class="pre">TextEdit</span></code><a class="headerlink" href="#textedit" title="Permalink to this headline">¶</a></h2>
+<p>Similar to LineEdit, but can be used to enter several lines of text</p>
+<p><em>Note:</em> The current implementation only implement very few basic shortcut. More
+shortcut will be implemented in a future version: <a class="reference external" href="https://github.com/sixtyfpsui/sixtyfps/issues/474">https://github.com/sixtyfpsui/sixtyfps/issues/474</a></p>
+<section id="id17">
+<h3>Properties<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">text</span></code></strong> (<em>string</em>): The text being edited</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">has-focus</span></code></strong>: (<em>bool</em>): Set to true when the widget currently has the focus</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">enabled</span></code></strong>: (<em>bool</em>): Defaults to true. When false, nothing can be entered</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wrap</span></code></strong> (<em>enum <a class="reference external" href="builtin_elements.md#textwrap"><code class="docutils literal notranslate"><span class="pre">TextWrap</span></code></a></em>): The way the text wraps (default: word-wrap).</p></li>
+</ul>
+</section>
+<section id="id18">
+<h3>Callbacks<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">edited</span></code></strong>: Emitted when the text has changed because the user modified it</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>Example<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { TextEdit } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 200px;
+    TextEdit {
+        width: parent.width;
+        height: parent.height;
+        text: &quot;Lorem ipsum dolor sit amet\n, consectetur adipisici elit&quot;;
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="scrollview">
+<h2><code class="docutils literal notranslate"><span class="pre">ScrollView</span></code><a class="headerlink" href="#scrollview" title="Permalink to this headline">¶</a></h2>
+<p>A Scrollview contains a viewport that is bigger than the view and can be
+scrolled. It has scrollbar to interact with. The viewport-width and
+viewport-height are calculated automatically to create a scollable view
+except for when using a for loop to populate the elements. In that case
+the viewport-width and viewport-height are not calculated automatically
+and must be set manually for scrolling to work. The ability to
+automatically calculate the viewport-width and viewport-height when
+using for loops may be added in the future and is tracked in issue #407.</p>
+<section id="id20">
+<h3>Properties<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">viewport-width</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">viewport-height</span></code></strong> (<em>length</em>): The <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> properties of the viewport</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">viewport-x</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">viewport-y</span></code></strong> (<em>length</em>): The <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> properties of the viewport. Usually these are negative</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">visible-width</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">visible-height</span></code></strong> (<em>length</em>): The size of the visible area of the ScrollView (not including the scrollbar)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">enabled</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">has-focus</span></code></strong> (bool): property that are only used to render the frame as disabled or focused, but do not
+change the behavior of the widget.</p></li>
+</ul>
+</section>
+<section id="id21">
+<h3>Example<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { ScrollView } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 200px;
+    ScrollView {
+        width: 200px;
+        height: 200px;
+        viewport-width: 300px;
+        viewport-height: 300px;
+        Rectangle { width: 30px; height: 30px; x: 275px; y: 50px; background: blue; }
+        Rectangle { width: 30px; height: 30px; x: 175px; y: 130px; background: red; }
+        Rectangle { width: 30px; height: 30px; x: 25px; y: 210px; background: yellow; }
+        Rectangle { width: 30px; height: 30px; x: 98px; y: 55px; background: orange; }
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="listview">
+<h2><code class="docutils literal notranslate"><span class="pre">ListView</span></code><a class="headerlink" href="#listview" title="Permalink to this headline">¶</a></h2>
+<p>A ListView is like a Scrollview but it should have a <code class="docutils literal notranslate"><span class="pre">for</span></code> element, and the content are
+automatically layed out in a list.
+Elements are only instantiated if they are visible</p>
+<section id="id22">
+<h3>Properties<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>Same as ScrollView</p>
+</section>
+<section id="id23">
+<h3>Example<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { ListView } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 150px;
+    height: 150px;
+    ListView {
+        width: 150px;
+        height: 150px;
+        for data in [
+            { text: &quot;Blue&quot;, color: #0000ff, bg: #eeeeee},
+            { text: &quot;Red&quot;, color: #ff0000, bg: #eeeeee},
+            { text: &quot;Green&quot;, color: #00ff00, bg: #eeeeee},
+            { text: &quot;Yellow&quot;, color: #ffff00, bg: #222222 },
+            { text: &quot;Black&quot;, color: #000000, bg: #eeeeee },
+            { text: &quot;White&quot;, color: #ffffff, bg: #222222 },
+            { text: &quot;Magenta&quot;, color: #ff00ff, bg: #eeeeee },
+            { text: &quot;Cyan&quot;, color: #00ffff, bg: #222222 },
+        ] : Rectangle {
+            height: 30px;
+            background: data.bg;
+            width: parent.width;
+            Text {
+                text: data.text;
+                color: data.color;
+            }
+        }
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="standardlistview">
+<h2><code class="docutils literal notranslate"><span class="pre">StandardListView</span></code><a class="headerlink" href="#standardlistview" title="Permalink to this headline">¶</a></h2>
+<p>Like ListView, but with a default delegate, and a <code class="docutils literal notranslate"><span class="pre">model</span></code> property which is a model of type
+<code class="docutils literal notranslate"><span class="pre">StandardListViewItem</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">StandardListViewItem</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">text:</span> <span class="pre">string</span> <span class="pre">}</span></code> but will be improved in the future with <code class="docutils literal notranslate"><span class="pre">icon</span></code>, <code class="docutils literal notranslate"><span class="pre">checked</span></code> and so on (TODO)</p>
+<section id="id24">
+<h3>Properties<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>Same as ListView, and in addition:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">model</span></code></strong> (<em><code class="docutils literal notranslate"><span class="pre">[StandardListViewItem]</span></code></em>): The model</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">current-item</span></code></strong> (<em>int</em>): The index of the currently active item. -1 mean none is selected, which is the default</p></li>
+</ul>
+</section>
+<section id="id25">
+<h3>Example<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { StandardListView } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 150px;
+    height: 150px;
+    StandardListView {
+        width: 150px;
+        height: 150px;
+        model: [ { text: &quot;Blue&quot;}, { text: &quot;Red&quot; }, { text: &quot;Green&quot; },
+            { text: &quot;Yellow&quot; }, { text: &quot;Black&quot;}, { text: &quot;White&quot;},
+            { text: &quot;Magenta&quot; }, { text: &quot;Cyan&quot; },
+        ];
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="combobox">
+<h2><code class="docutils literal notranslate"><span class="pre">ComboBox</span></code><a class="headerlink" href="#combobox" title="Permalink to this headline">¶</a></h2>
+<p>A button that, when clicked, opens a popup to select a value.</p>
+<section id="id26">
+<h3>Properties<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">model</span></code></strong> (<em>[string]</em>): The list of possible values</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">current-index</span></code></strong>: (<em>int</em>): The index of the selected value (-1 if no value is selected)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">current-value</span></code></strong>: (<em>string</em>): The currently selected text</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">enabled</span></code></strong>: (<em>bool</em>): When false, the combobox cannot be opened (default: true)</p></li>
+</ul>
+</section>
+<section id="id27">
+<h3>Callbacks<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">selected(string)</span></code></strong>: A value was selected from the combo box. The argument is the currently selected value.</p></li>
+</ul>
+</section>
+<section id="id28">
+<h3>Example<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { ComboBox } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 25px;
+    ComboBox {
+        width: preferred-width;
+        height: preferred-height;
+        model: [&quot;first&quot;, &quot;second&quot;, &quot;third&quot;];
+        current-value: &quot;first&quot;;
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tabwidget">
+<h2><code class="docutils literal notranslate"><span class="pre">TabWidget</span></code><a class="headerlink" href="#tabwidget" title="Permalink to this headline">¶</a></h2>
+<p>TabWidget is a container for a set of tabs. It can only have <code class="docutils literal notranslate"><span class="pre">Tab</span></code> elements as children and only one tab will be visible at
+a time.</p>
+<section id="id29">
+<h3>Properties<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">current-index</span></code></strong> (<em>int</em>): The index of the currently visible tab</p></li>
+</ul>
+</section>
+<section id="properties-of-the-tab-element">
+<h3>Properties of the <code class="docutils literal notranslate"><span class="pre">Tab</span></code> element<a class="headerlink" href="#properties-of-the-tab-element" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">title</span></code></strong> (<em>string</em>): The text written in the tab bar.</p></li>
+</ul>
+</section>
+<section id="id30">
+<h3>Example<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { TabWidget } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 200px;
+    height: 200px;
+    TabWidget {
+        Tab {
+            title: &quot;First&quot;;
+            Rectangle { background: orange; }
+        }
+        Tab {
+            title: &quot;Second&quot;;
+            Rectangle { background: pink; }
+        }
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="horizontalbox-verticalbox-gridbox">
+<h2><code class="docutils literal notranslate"><span class="pre">HorizontalBox</span></code>, <code class="docutils literal notranslate"><span class="pre">VerticalBox</span></code>, <code class="docutils literal notranslate"><span class="pre">GridBox</span></code><a class="headerlink" href="#horizontalbox-verticalbox-gridbox" title="Permalink to this headline">¶</a></h2>
+<p>That’s the same as <code class="docutils literal notranslate"><span class="pre">HorizontalLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">VerticalLayout</span></code> or <code class="docutils literal notranslate"><span class="pre">GridLayout</span></code> but the spacing and padding values
+depending on the style instead of defaulting to 0.</p>
+</section>
+<section id="aboutsixtyfps">
+<h2><code class="docutils literal notranslate"><span class="pre">AboutSixtyFPS</span></code><a class="headerlink" href="#aboutsixtyfps" title="Permalink to this headline">¶</a></h2>
+<p>This element displays the a “Made with SixtyFPS” badge.</p>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>import { AboutSixtyFPS } from &quot;sixtyfps_widgets.60&quot;;
+Example := Window {
+    width: 128px;
+    height: 128px;
+    AboutSixtyFPS {        
+    }
+}
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sixtyfpsui</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Frederick Vollbrecht.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/widgets.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

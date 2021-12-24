@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>SixtyFPS build guide &#8212; sixtyfpsui  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="sixtyfps-build-guide">
+<h1>SixtyFPS build guide<a class="headerlink" href="#sixtyfps-build-guide" title="Permalink to this headline">¶</a></h1>
+<p>This page explains how to build and test SixtyFPS.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<section id="installing-rust">
+<h3>Installing Rust<a class="headerlink" href="#installing-rust" title="Permalink to this headline">¶</a></h3>
+<p>Install Rust by following the <a class="reference external" href="https://www.rust-lang.org/learn/get-started">Rust Getting Started Guide</a>. If you already
+have Rust installed, make sure that it’s at least version 1.54 or newer. You can check which version you have installed
+by running <code class="docutils literal notranslate"><span class="pre">rustc</span> <span class="pre">--version</span></code>.</p>
+<p>Once this is done, you should have the <code class="docutils literal notranslate"><span class="pre">rustc</span></code> compiler and the <code class="docutils literal notranslate"><span class="pre">cargo</span></code> build system installed in your path.</p>
+</section>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>For Linux a few additional packages beyond the usual build essentials are needed for development and running apps:</p>
+<ul class="simple">
+<li><p>xcb (<code class="docutils literal notranslate"><span class="pre">libxcb-shape0-dev</span></code> <code class="docutils literal notranslate"><span class="pre">libxcb-xfixes0-dev</span></code> on debian based distributions)</p></li>
+<li><p>xkbcommon (<code class="docutils literal notranslate"><span class="pre">libxkbcommon-dev</span></code> on debian based distributions)</p></li>
+<li><p>fontconfig library (<code class="docutils literal notranslate"><span class="pre">libfontconfig-dev</span></code> on debian based distributions)</p></li>
+</ul>
+</section>
+<section id="macos">
+<h3>macOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Make sure the “Xcode Command Line Tools” are installed: <code class="docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code></p></li>
+</ul>
+</section>
+<section id="for-the-nodejs-backend">
+<h3>For the NodeJS backend<a class="headerlink" href="#for-the-nodejs-backend" title="Permalink to this headline">¶</a></h3>
+<p>For the nodejs backend, the following component are needed:</p>
+<ul class="simple">
+<li><p><strong>node</strong> (including npm)</p></li>
+<li><p><strong>python</strong></p></li>
+</ul>
+<p>It would be nice if building the nodejs backend was optional, but right now it is part of the workspace.
+You can still not build it by doing <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span> <span class="pre">--workspace</span> <span class="pre">--exclude</span> <span class="pre">sixtyfps-node</span></code>. But cargo test will fail.</p>
+</section>
+<section id="for-the-c-dev-optional">
+<h3>For the C++ dev (optional)<a class="headerlink" href="#for-the-c-dev-optional" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://cmake.org/download/">cmake</a></strong> (3.19 or newer)</p></li>
+<li><p>A C++ compiler that can do C++17 (e.g., <strong>MSVC 2019</strong> on Windows)</p></li>
+</ul>
+</section>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Most of the project is written in Rust, and compiling and running the test can
+done with cargo.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cargo build
+cargo <span class="nb">test</span>
+</pre></div>
+</div>
+<p><strong>Important:</strong> Note that <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">test</span></code> does not work without first calling <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code> because the
+C++ tests or the nodejs tests will not find the required dynamic library otherwise</p>
+<section id="c-test">
+<h3>C++ test<a class="headerlink" href="#c-test" title="Permalink to this headline">¶</a></h3>
+<p>The C++ crate are not included in the workspace’s default members, so it need to be build explicitly</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cargo build --lib -p sixtyfps-cpp
+cargo <span class="nb">test</span> --bin test-driver-cpp
+</pre></div>
+</div>
+</section>
+<section id="more-info-about-tests">
+<h3>More info about tests<a class="headerlink" href="#more-info-about-tests" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference internal" href="testing.html"><span class="doc std std-doc">testing.md</span></a></p>
+</section>
+</section>
+<section id="c-build">
+<h2>C++ Build<a class="headerlink" href="#c-build" title="Permalink to this headline">¶</a></h2>
+<p>This is just a normal cmake build.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir cppbuild <span class="o">&amp;&amp;</span> <span class="nb">cd</span> cppbuild
+cmake -GNinja ..
+cmake --build .
+</pre></div>
+</div>
+<p>The build will call cargo to build the rust libraries, and build the examples.
+In order to install the libraries and everything you need, use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --install .
+</pre></div>
+</div>
+<p>You can pass <code class="docutils literal notranslate"><span class="pre">-DCMAKE_INSTALL_PREFIX</span></code> in the first cmake command in order to choose the install location</p>
+</section>
+<section id="cross-compiling">
+<h2>Cross-Compiling<a class="headerlink" href="#cross-compiling" title="Permalink to this headline">¶</a></h2>
+<p>SixtyFPS can be cross-compiled to different target architectures and environments. For the Rust build we
+have had a good experience using <a class="reference external" href="https://github.com/rust-embedded/cross"><code class="docutils literal notranslate"><span class="pre">cross</span></code></a>. For convenience we’re
+including a <code class="docutils literal notranslate"><span class="pre">Cross.toml</span></code> configuration file for <code class="docutils literal notranslate"><span class="pre">cross</span></code> in the source tree along with Docker containers that
+allow targeting a Debian ARMv7 and ARMv8 based Distribution with X11 or Wayland, out of the box.</p>
+<p>This includes for example the Raspberry Pi OS. Using the following steps you can run the examples on a
+pi:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cross build --target armv7-unknown-linux-gnueabihf --workspace --exclude sixtyfps-node --release
+scp target/armv7-unknown-linux-gnueabihf/release/printerdemo pi@raspberrypi.local:.
+</pre></div>
+</div>
+<p>Finally on a shell on the Pi:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DISPLAY</span><span class="o">=</span>:0 ./printerdemo
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>See the <span class="xref myst">examples</span> folder for examples to build, run and test.</p>
+</section>
+<section id="running-the-viewer">
+<h2>Running the viewer<a class="headerlink" href="#running-the-viewer" title="Permalink to this headline">¶</a></h2>
+<p>SixtyFPS also includes a viewer tool that can load <code class="docutils literal notranslate"><span class="pre">.60</span></code>files dynamically at run-time. It is a
+cargo-integrated binary and can be run directly on the <code class="docutils literal notranslate"><span class="pre">.60</span></code>files, for example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cargo run --release --bin sixtyfps-viewer -- examples/printerdemo/ui/printerdemo.60
+</pre></div>
+</div>
+</section>
+<section id="generating-the-documentation">
+<h2>Generating the documentation<a class="headerlink" href="#generating-the-documentation" title="Permalink to this headline">¶</a></h2>
+<section id="rustdoc">
+<h3>rustdoc<a class="headerlink" href="#rustdoc" title="Permalink to this headline">¶</a></h3>
+<p>The language reference has snippets in the .60 language which can be previewed by injecting
+html to the documentation with the <code class="docutils literal notranslate"><span class="pre">--html-in-header</span></code> rustdoc flag.</p>
+<p>Here is how to build the documentation to include preview of the .60 files.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">RUSTDOCFLAGS</span><span class="o">=</span><span class="s2">&quot;--html-in-header=</span><span class="nv">$PWD</span><span class="s2">/docs/resources/sixtyfps-docs-preview.html --html-in-header=</span><span class="nv">$PWD</span><span class="s2">/docs/resources/sixtyfps-docs-highlight.html&quot;</span> cargo doc --no-deps
+</pre></div>
+</div>
+</section>
+<section id="c-doc">
+<h3>C++ doc<a class="headerlink" href="#c-doc" title="Permalink to this headline">¶</a></h3>
+<p>To generate the C++ API documentation, one need to have doxygen installed, and run this command</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cargo xtask cppdocs
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sixtyfpsui</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Frederick Vollbrecht.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/building.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

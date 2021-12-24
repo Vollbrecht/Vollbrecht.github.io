@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Welcome to sixtyfpsui’s documentation! &#8212; sixtyfpsui  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SixtyFPS build guide" href="building.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="welcome-to-sixtyfpsui-s-documentation">
+<h1>Welcome to sixtyfpsui’s documentation!<a class="headerlink" href="#welcome-to-sixtyfpsui-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="building.html">SixtyFPS build guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="building.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building.html#installing-rust">Installing Rust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#macos">macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#for-the-nodejs-backend">For the NodeJS backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#for-the-c-dev-optional">For the C++ dev (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building.html#c-test">C++ test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#more-info-about-tests">More info about tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#c-build">C++ Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#cross-compiling">Cross-Compiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#running-the-viewer">Running the viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#generating-the-documentation">Generating the documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building.html#rustdoc">rustdoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#c-doc">C++ doc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html">Builtin Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#common-properties">Common properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#drop-shadows">Drop Shadows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#window"><code class="docutils literal notranslate"><span class="pre">Window</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#rectangle"><code class="docutils literal notranslate"><span class="pre">Rectangle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id1">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#image"><code class="docutils literal notranslate"><span class="pre">Image</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id2">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id3">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#text"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id4">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id5">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#common-path-properties">Common Path Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="builtin_elements.html#path-using-svg-commands">Path Using SVG commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="builtin_elements.html#path-using-svg-path-elements">Path Using SVG Path Elements</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="builtin_elements.html#moveto-sub-element-for-path"><code class="docutils literal notranslate"><span class="pre">MoveTo</span></code> Sub-element for <code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="builtin_elements.html#id6">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="builtin_elements.html#lineto-sub-element-for-path"><code class="docutils literal notranslate"><span class="pre">LineTo</span></code> Sub-element for <code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="builtin_elements.html#id7">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="builtin_elements.html#arcto-sub-element-for-path"><code class="docutils literal notranslate"><span class="pre">ArcTo</span></code> Sub-element for <code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="builtin_elements.html#id8">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="builtin_elements.html#cubicto-sub-element-for-path"><code class="docutils literal notranslate"><span class="pre">CubicTo</span></code> Sub-element for <code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="builtin_elements.html#id9">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="builtin_elements.html#quadraticto-sub-element-for-path"><code class="docutils literal notranslate"><span class="pre">QuadraticTo</span></code> Sub-element for <code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="builtin_elements.html#id10">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="builtin_elements.html#close-sub-element-for-path"><code class="docutils literal notranslate"><span class="pre">Close</span></code> Sub-element for <code class="docutils literal notranslate"><span class="pre">Path</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#toucharea"><code class="docutils literal notranslate"><span class="pre">TouchArea</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id11">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#callbacks">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id12">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#focusscope"><code class="docutils literal notranslate"><span class="pre">FocusScope</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id13">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#methods">Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id14">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id15">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#verticallayout-horizontallayout"><code class="docutils literal notranslate"><span class="pre">VerticalLayout</span></code> / <code class="docutils literal notranslate"><span class="pre">HorizontalLayout</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#id16">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#id17">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#gridlayout"><code class="docutils literal notranslate"><span class="pre">GridLayout</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id18">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#pathlayout"><code class="docutils literal notranslate"><span class="pre">PathLayout</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#flickable"><code class="docutils literal notranslate"><span class="pre">Flickable</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id19">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id20">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#textinput"><code class="docutils literal notranslate"><span class="pre">TextInput</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id21">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id22">Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id23">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id24">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#popupwindow"><code class="docutils literal notranslate"><span class="pre">PopupWindow</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id25">Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id26">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#dialog"><code class="docutils literal notranslate"><span class="pre">Dialog</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id27">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id28">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html#builtin-structures">Builtin Structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#fields">Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#keyevent"><code class="docutils literal notranslate"><span class="pre">KeyEvent</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id29">Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#keyboardmodifiers"><code class="docutils literal notranslate"><span class="pre">KeyboardModifiers</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id30">Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#pointerevent"><code class="docutils literal notranslate"><span class="pre">PointerEvent</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id31">Fields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html#builtin-enums">Builtin Enums</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#texthorizontalalignment"><code class="docutils literal notranslate"><span class="pre">TextHorizontalAlignment</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#values">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#textverticalalignment"><code class="docutils literal notranslate"><span class="pre">TextVerticalAlignment</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id32">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#textwrap"><code class="docutils literal notranslate"><span class="pre">TextWrap</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id33">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#textoverflow"><code class="docutils literal notranslate"><span class="pre">TextOverflow</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id34">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#eventresult"><code class="docutils literal notranslate"><span class="pre">EventResult</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id35">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#fillrule"><code class="docutils literal notranslate"><span class="pre">FillRule</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id36">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#dialogbuttonrole"><code class="docutils literal notranslate"><span class="pre">DialogButtonRole</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id37">Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_elements.html#mousecursor"><code class="docutils literal notranslate"><span class="pre">MouseCursor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="builtin_elements.html#id38">Values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">SixtyFPS development guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#repository-structures">Repository structures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#helper-crates"><code class="docutils literal notranslate"><span class="pre">helper_crates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#sixtyfps-compiler"><code class="docutils literal notranslate"><span class="pre">sixtyfps_compiler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#sixtyfps-runtime"><code class="docutils literal notranslate"><span class="pre">sixtyfps_runtime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#tools"><code class="docutils literal notranslate"><span class="pre">tools</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#api"><code class="docutils literal notranslate"><span class="pre">api</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#tests"><code class="docutils literal notranslate"><span class="pre">tests</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#examples"><code class="docutils literal notranslate"><span class="pre">examples</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#rust-to-c-bindings">Rust to C++ bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#cbindgen"><code class="docutils literal notranslate"><span class="pre">cbindgen</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install_qt.html">Install Qt</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install_qt.html#do-i-need-qt-to-use-sixtyfps">Do I need Qt to use SixtyFPS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_qt.html#how-to-install-qt">How to install Qt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install_qt.html#linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_qt.html#macos">macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_qt.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install_qt.html#how-to-disable-the-qt-backend">How To Disable the Qt Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="langref.html">The <code class="docutils literal notranslate"><span class="pre">.60</span></code> language reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#files"><code class="docutils literal notranslate"><span class="pre">.60</span></code> files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#container-components">Container Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#comments">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#identifiers">Identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#properties">Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#bindings">Bindings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#two-way-bindings">Two-way Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#types">Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#structs">Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#custom-named-structures">Custom named structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#arrays-model">Arrays / Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#conversions">Conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#relative-lengths">Relative Lengths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#callback">Callback</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#callback-aliases">Callback aliases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#expressions">Expressions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#strings">Strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#colors">Colors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="langref.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="langref.html#gradients">Gradients</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#images">Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#arrays-structs">Arrays/Structs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#statements">Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#repetition">Repetition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#conditional-element">Conditional element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#animations">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#states">States</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#transitions">Transitions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#global-singletons">Global Singletons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#focus-handling">Focus Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#builtin-functions">Builtin functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#math-namespace"><code class="docutils literal notranslate"><span class="pre">Math</span></code> namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="langref.html#colors-namespace"><code class="docutils literal notranslate"><span class="pre">Colors</span></code> namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="langref.html#font-handling">Font Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layouting.html">Positioning and Layout of Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="layouting.html#explicit-placement">Explicit Placement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouting.html#automatic-placement-using-layouts">Automatic Placement using Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouting.html#common-properties-on-layout-elements">Common Properties on Layout Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouting.html#verticallayout-and-horizontallayout"><code class="docutils literal notranslate"><span class="pre">VerticalLayout</span></code> and <code class="docutils literal notranslate"><span class="pre">HorizontalLayout</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="layouting.html#alignment">Alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layouting.html#stretch-algorithm">Stretch algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layouting.html#for"><code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="layouting.html#gridlayout">GridLayout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouting.html#pathlayout"><code class="docutils literal notranslate"><span class="pre">PathLayout</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">SixtyFPS tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#syntax-tests">Syntax tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#driver-tests">Driver tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#interpreter-test">Interpreter test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#rust-driver">Rust driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#c-driver">C++ driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#node-driver">Node driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#doctests">Doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#button"><code class="docutils literal notranslate"><span class="pre">Button</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#properties">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#callbacks">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#standardbutton"><code class="docutils literal notranslate"><span class="pre">StandardButton</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id1">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id2">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id3">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#checkbox"><code class="docutils literal notranslate"><span class="pre">CheckBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id4">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id5">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#spinbox"><code class="docutils literal notranslate"><span class="pre">SpinBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id7">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id8">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#slider"><code class="docutils literal notranslate"><span class="pre">Slider</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id9">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id10">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id11">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#groupbox"><code class="docutils literal notranslate"><span class="pre">GroupBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id12">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id13">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#lineedit"><code class="docutils literal notranslate"><span class="pre">LineEdit</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id14">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id15">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id16">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#textedit"><code class="docutils literal notranslate"><span class="pre">TextEdit</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id17">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id18">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id19">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#scrollview"><code class="docutils literal notranslate"><span class="pre">ScrollView</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id20">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id21">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#listview"><code class="docutils literal notranslate"><span class="pre">ListView</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id22">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id23">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#standardlistview"><code class="docutils literal notranslate"><span class="pre">StandardListView</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id24">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id25">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#combobox"><code class="docutils literal notranslate"><span class="pre">ComboBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id26">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id27">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id28">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#tabwidget"><code class="docutils literal notranslate"><span class="pre">TabWidget</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id29">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#properties-of-the-tab-element">Properties of the <code class="docutils literal notranslate"><span class="pre">Tab</span></code> element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html#id30">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#horizontalbox-verticalbox-gridbox"><code class="docutils literal notranslate"><span class="pre">HorizontalBox</span></code>, <code class="docutils literal notranslate"><span class="pre">VerticalBox</span></code>, <code class="docutils literal notranslate"><span class="pre">GridBox</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html#aboutsixtyfps"><code class="docutils literal notranslate"><span class="pre">AboutSixtyFPS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">sixtyfpsui</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="building.html">SixtyFPS build guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html">Builtin Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html#builtin-structures">Builtin Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html#builtin-enums">Builtin Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">SixtyFPS development guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_qt.html">Install Qt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="langref.html">The <code class="docutils literal notranslate"><span class="pre">.60</span></code> language reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layouting.html">Positioning and Layout of Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">SixtyFPS tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="building.html" title="next chapter">SixtyFPS build guide</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Frederick Vollbrecht.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

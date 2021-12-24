@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Install Qt &#8212; sixtyfpsui  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="install-qt">
+<h1>Install Qt<a class="headerlink" href="#install-qt" title="Permalink to this headline">¶</a></h1>
+<p>TLDR; If you are redirected to this document because of a link in the warning that Qt was not found and
+you want to silence the warning without installing Qt, you can set this environment variable: <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_NO_QT=1</span></code></p>
+<section id="do-i-need-qt-to-use-sixtyfps">
+<h2>Do I need Qt to use SixtyFPS?<a class="headerlink" href="#do-i-need-qt-to-use-sixtyfps" title="Permalink to this headline">¶</a></h2>
+<p>Short answer: No. Only if you want to use the Qt backend used for the native style.</p>
+<p>SixtyFPS has two backends: GL and Qt. The GL backend uses the <code class="docutils literal notranslate"><span class="pre">femtovg</span></code> and <code class="docutils literal notranslate"><span class="pre">winit</span></code> crate for the rendering.
+The Qt backend uses Qt. In addition, the Qt backend provide the implementation for the native widget
+from the <code class="docutils literal notranslate"><span class="pre">native</span></code> style.
+Qt is only needed if you want native looking widgets. Otherwise, another style will be used for widget, which does not
+look native.
+In the future, we plan to have native backend using the native API, which will allow native widgets without using Qt.</p>
+</section>
+<section id="how-to-install-qt">
+<h2>How to install Qt<a class="headerlink" href="#how-to-install-qt" title="Permalink to this headline">¶</a></h2>
+<p>You will need the Qt &gt;= 5.15</p>
+<p>You can just download and install the latest version of Qt from https://www.qt.io/download-qt-installer or any other sources</p>
+<p>Then simply make sure that <code class="docutils literal notranslate"><span class="pre">qmake</span></code> executable is in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> when you build SixtyFPS. The executable is
+typically located in the <code class="docutils literal notranslate"><span class="pre">bin</span></code> sub-directory of a Qt installation that was produced by the Qt installer.
+Alternatively, you can set the <code class="docutils literal notranslate"><span class="pre">QMAKE</span></code> environment variable to point to the <code class="docutils literal notranslate"><span class="pre">qmake</span></code> executable.
+(more info: <a class="reference external" href="https://docs.rs/qttypes/*/qttypes/#finding-qt">https://docs.rs/qttypes/*/qttypes/#finding-qt</a> )</p>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>Many distributions may provide Qt 5.15 in the distribution package. In that case you can install these packages
+and there is not much more to do. On many distributions, you also need the <strong>-dev</strong> packages. For distributions that
+split the packages in different modules, you just need <code class="docutils literal notranslate"><span class="pre">qtbase</span></code> (for QtWidgets) and <code class="docutils literal notranslate"><span class="pre">qtsvg</span></code> for the SVG plugin.</p>
+<p>If when running your SixtyFPS application you get an error that libQt5Core.so.5 or such cannot be found, you need to
+adjust the <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable to contain a path that contains the Qt libraries.</p>
+</section>
+<section id="macos">
+<h3>macOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
+<p>In addition to either having <code class="docutils literal notranslate"><span class="pre">qmake</span></code> in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code> or setting <code class="docutils literal notranslate"><span class="pre">QMAKE</span></code>, you also need to modify the <code class="docutils literal notranslate"><span class="pre">DYLD_FRAMEWORK_PATH</span></code>
+environment variable. It needs to be set to the <code class="docutils literal notranslate"><span class="pre">lib</span></code> directory of your Qt installation, for example <code class="docutils literal notranslate"><span class="pre">$HOME/Qt/6.2.0/macos/lib</span></code>,
+in order for the dynamic linker to find the Qt libraries when starting an application.</p>
+</section>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>For Windows it is necessary to have the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory of your Qt installation in the list of paths in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>
+environment variable, in order for the build system to locate <code class="docutils literal notranslate"><span class="pre">qmake</span></code> and to find the Qt DLLs when starting an application.</p>
+</section>
+</section>
+<section id="how-to-disable-the-qt-backend">
+<h2>How To Disable the Qt Backend<a class="headerlink" href="#how-to-disable-the-qt-backend" title="Permalink to this headline">¶</a></h2>
+<p>By setting the <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_NO_QT</span></code> environment variable when building SixtyFPS, the Qt backend will not be compiled and
+no attempt will be made to find Qt on the system. This will also disable the warning stating that Qt was not found.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sixtyfpsui</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Frederick Vollbrecht.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/install_qt.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

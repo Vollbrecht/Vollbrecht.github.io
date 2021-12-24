@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>SixtyFPS tests &#8212; sixtyfpsui  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="sixtyfps-tests">
+<h1>SixtyFPS tests<a class="headerlink" href="#sixtyfps-tests" title="Permalink to this headline">¶</a></h1>
+<p>This documents describe the testing infrastructure of SixtyFPS</p>
+<section id="syntax-tests">
+<h2>Syntax tests<a class="headerlink" href="#syntax-tests" title="Permalink to this headline">¶</a></h2>
+<p>The syntax tests are testing that the compiler show the right error messages in case of error.</p>
+<p>The syntax tests are located in <code class="docutils literal notranslate"><span class="pre">sixtyfps_compiler/tests/syntax/</span></code> and it is driven by the
+<span class="xref myst"><code class="docutils literal notranslate"><span class="pre">syntax_tests.rs</span></code></span> file. More info in the comments of that file.</p>
+<p>In summary, each .60 files have comments with <code class="docutils literal notranslate"><span class="pre">^error</span></code> like so:</p>
+<div class="highlight-ingore notranslate"><div class="highlight"><pre><span></span>foo bar
+//  ^error{parse error}
+</pre></div>
+</div>
+<p>Meaning that there must be an error on the line above at the location pointed by the caret.</p>
+<p>Ideally, each error message must be tested like so.</p>
+<p>The syntax test can be run alone with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cargo <span class="nb">test</span> --test syntax_tests
+</pre></div>
+</div>
+</section>
+<section id="driver-tests">
+<h2>Driver tests<a class="headerlink" href="#driver-tests" title="Permalink to this headline">¶</a></h2>
+<p>These tests make sure that feature in .60 behave as expected.
+All the .60 files in the sub directories are going to be test by the drivers with the different
+language frontends.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.60</span></code> code contains a comment with some block of code which is extracted by the relevant driver.</p>
+<section id="interpreter-test">
+<h3>Interpreter test<a class="headerlink" href="#interpreter-test" title="Permalink to this headline">¶</a></h3>
+<p>The interpreter test is the faster test to compile and run. It test the compiler and the eval feature
+as run by the viewer or such. It can be run like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cargo</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="n">test</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="n">interpreter</span> <span class="o">--</span>
+</pre></div>
+</div>
+<p>You can add an argument to test only for particular tests.</p>
+<p>If there is a property <code class="docutils literal notranslate"><span class="pre">test</span></code> in the last component of the file, the test will make sure this
+property equal to bool.</p>
+<p>example:</p>
+<div class="highlight-60 notranslate"><div class="highlight"><pre><span></span>Foo := Rectangle {
+   // test would fail if that property was false
+   property &lt;bool&gt; test: 1 + 1 == 2;
+}
+</pre></div>
+</div>
+</section>
+<section id="rust-driver">
+<h3>Rust driver<a class="headerlink" href="#rust-driver" title="Permalink to this headline">¶</a></h3>
+<p>The rust driver will compile each snippet of code and put it in a <code class="docutils literal notranslate"><span class="pre">sixtyfps!</span></code> macro in its own module
+In addition, if there are <code class="docutils literal notranslate"><span class="pre">```rust</span></code> blocks in a comment, they are extracted into a <code class="docutils literal notranslate"><span class="pre">#[test]</span></code>
+function in the same module. This is usefull to test the rust api.
+This is all compiled in a while program, so the <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_TEST_FILTER</span></code> environment variable can be
+set while building to only build the test that matches the filter.
+Example: to test all the layout test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIXTYFPS_TEST_FILTER</span><span class="o">=</span><span class="n">layout</span> <span class="n">cargo</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="n">test</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="n">rust</span>
+</pre></div>
+</div>
+<p>Instead of putting everything in a sixtyfps! macro, it is possible to tell the driver to do the
+compilation in the build.rs, with the builod-time feature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIXTYFPS_TEST_FILTER</span><span class="o">=</span><span class="n">layout</span> <span class="n">cargo</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="n">test</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="n">rust</span> <span class="o">--</span><span class="n">features</span> <span class="n">build</span><span class="o">-</span><span class="n">time</span>
+</pre></div>
+</div>
+</section>
+<section id="c-driver">
+<h3>C++ driver<a class="headerlink" href="#c-driver" title="Permalink to this headline">¶</a></h3>
+<p>The C++ test driver will take each .60 and generate a .h for it. It will also generate a .cpp that
+includes it, and add the <code class="docutils literal notranslate"><span class="pre">```cpp</span></code> block in the main function.
+Each program is compiled separately. And then run.</p>
+<p>Some macro like <code class="docutils literal notranslate"><span class="pre">assert_eq</span></code> are defined to look similar o the rust equivalent.</p>
+<p>To run the test, you must make sure to first build the sixtyfps shared library:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cargo</span> <span class="n">build</span> <span class="o">--</span><span class="n">lib</span> <span class="o">-</span><span class="n">p</span> <span class="n">sixtyfps</span><span class="o">-</span><span class="n">cpp</span> <span class="o">--</span><span class="n">features</span> <span class="n">testing</span> <span class="o">&amp;&amp;</span> <span class="n">cargo</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span>  <span class="n">test</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="n">cpp</span> <span class="o">--</span>
+</pre></div>
+</div>
+<p>You can omit the first part that compiles sixtyfps-cpp if you only want to test the compiler and
+the runtime library is uptodate.</p>
+<p>Note that there are also C++ unit tests that can be run by CMake</p>
+</section>
+<section id="node-driver">
+<h3>Node driver<a class="headerlink" href="#node-driver" title="Permalink to this headline">¶</a></h3>
+<p>This is used to test the NodeJS API. It takes the <code class="docutils literal notranslate"><span class="pre">```js</span></code> blocks in comment and make .js file
+with it that loads the .60 and runs node with it.
+Each test is run in a different node process.
+You need to build the node integration before running the tests, even if the change was on the compiler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cargo</span>  <span class="n">build</span> <span class="o">-</span><span class="n">p</span> <span class="n">sixtyfps</span><span class="o">-</span><span class="n">node</span>  <span class="o">&amp;&amp;</span> <span class="n">cargo</span>  <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="n">test</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="n">nodejs</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="doctests">
+<h2>Doctests<a class="headerlink" href="#doctests" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cargo</span> <span class="n">test</span> <span class="o">-</span><span class="n">p</span> <span class="n">doctests</span>
+</pre></div>
+</div>
+<p>The doctests extracts the <code class="docutils literal notranslate"><span class="pre">```60</span></code>  from the files in the docs folder and make  sure that
+the snippets can be build without errors</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sixtyfpsui</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Frederick Vollbrecht.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/testing.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
