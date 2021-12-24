@@ -10,18 +10,10 @@ Welcome to sixtyfpsui's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
 .. toctree::
    building.md
    builtin_elements.md
+   debugging_techniques.md
    development.md
    install_qt.md
    langref.md

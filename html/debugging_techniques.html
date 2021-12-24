@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Debugging Techniques &#8212; sixtyfpsui  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SixtyFPS development guide" href="development.html" />
+    <link rel="prev" title="Builtin Elements" href="builtin_elements.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="debugging-techniques">
+<h1>Debugging Techniques<a class="headerlink" href="#debugging-techniques" title="Permalink to this headline">¶</a></h1>
+<p>On this page we’re presenting different techniques and tools we’ve built into SixtyFPS that may help you track down different issues you may be running into, during the design and development.</p>
+<section id="slow-motion-animations">
+<h2>Slow Motion Animations<a class="headerlink" href="#slow-motion-animations" title="Permalink to this headline">¶</a></h2>
+<p>Animations in the user interface need to be carefully designed to have the correct duration and changes in element positioning or size need to follow a suitable curve.</p>
+<p>In order to inspect the animations in your application, you can can set the <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_SLOW_ANIMATIONS</span></code> environment variable before running the program. The variable accepts an unsigned integer value that is interpreted as a factor to globally slow down the steps of all animations, without having to make any changes to the <code class="docutils literal notranslate"><span class="pre">.60</span></code> markup and recompiling. For example <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_SLOW_ANIMATIONS=4</span></code> will slow down animations by a factor of four.</p>
+</section>
+<section id="user-interface-scaling">
+<h2>User Interface Scaling<a class="headerlink" href="#user-interface-scaling" title="Permalink to this headline">¶</a></h2>
+<p>The use of logical pixel lengths throughout <code class="docutils literal notranslate"><span class="pre">.60</span></code> files allows SixtyFPS to dynamically compute the correct size of physical pixels, depending on the device-pixel ratio of the screen that is reported by the windowing system. If you want to get an impression of how the individual elements look like when rendered on a screen with a different device-pixel ratio, then you can set the <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_SCALE_FACTOR</span></code> environment variable before running the program. The variable accepts a floating pointer number that is used to convert logical pixel lengths to physical pixel lengths by multiplication. For example <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_SCALE_FACTOR=2</span></code> will render the user interface in a way where every logical pixel will have twice the width and height.</p>
+<p><em>Note</em>: At the moment this overriding environment variable is only supported when using the OpenGL rendering backend.</p>
+</section>
+<section id="performance-debugging">
+<h2>Performance Debugging<a class="headerlink" href="#performance-debugging" title="Permalink to this headline">¶</a></h2>
+<p>SixtyFPS tries its best to use hardware-acceleration to ensure that rendering the user interface uses a minimal amount of CPU resources and animations appear smooth. However depending on the complexity of the user interface, the quality of the graphics drivers or the power of the graphics acceleration in your system, you may hit limits and experience a slow down. You can set the <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_DEBUG_PERFORMANCE</span></code> environment variable running the program to inspect at what rate your application is rendering frames to the screen. The variable accepts a few comma-separated options that affect how the frame rate inspection is performed and reported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">refresh_lazy</span></code>: The frame rate is measured only when an actual frame is rendered, for example due to a running animation, user interface or some state change that results in a visual difference in the user interface. When nothing changes, the reported frame rate will be low. This can be useful to verify that no unnecessary repainting happens when there are no visual changes. For example a user interface that shows a text input field with a cursor that blinks once a second, the reported frames per second should be two.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">refresh_full_speed</span></code>: The user interface is continuously refreshed, even if nothing is changed. This will result in a higher load on the system, but can be useful to identify any bottlenecks that prevent you from achieving smooth animations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console</span></code>: The measured frame per second rate is printed to stderr on the console.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">overlay</span></code>: The measured frame per second rate is as an overlay text label on top of the user interface in each window.</p></li>
+</ul>
+<p>These options are combined. At least the method of frame rate measuring and one reporting method must be specified. For example <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_DEBUG_PERFORMANCE=refresh_full_speed,overlay</span></code> will repeatedly re-render the entire user interface in each window and print the achieved frame rate in the top-left corner. <code class="docutils literal notranslate"><span class="pre">SIXTYFPS_DEBUG_PERFORMANCE=refresh_lazy,console,overlay</span></code> will measure the frame rate only when something in the user interface changes and the measured value will be printed to stderr as well as rendered as an overlay text label.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sixtyfpsui</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="building.html">SixtyFPS build guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html">Builtin Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html#builtin-structures">Builtin Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtin_elements.html#builtin-enums">Builtin Enums</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Debugging Techniques</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#slow-motion-animations">Slow Motion Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-interface-scaling">User Interface Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-debugging">Performance Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">SixtyFPS development guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_qt.html">Install Qt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="langref.html">The <code class="docutils literal notranslate"><span class="pre">.60</span></code> language reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layouting.html">Positioning and Layout of Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">SixtyFPS tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="builtin_elements.html" title="previous chapter">Builtin Elements</a></li>
+      <li>Next: <a href="development.html" title="next chapter">SixtyFPS development guide</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Frederick Vollbrecht.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/debugging_techniques.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
